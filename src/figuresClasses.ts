@@ -2,23 +2,11 @@ type Color = 'red' | 'blue' | 'green';
 
 type FigureSex = 'triangle' | 'circle' | 'rectangle';
 
-// enum FigureSex {
-//   triangle,
-//   circle,
-//   rectangle,
-// }
-
-// ---- X
-
 export interface Figure {
   color: Color;
   shape: FigureSex;
   getArea(): number;
-  // parseFloat((...).toFixed(2)) ->
-  // залишаемо лише 2 цифри після вирохування суми
 }
-
-// ----
 
 export class Rectangle implements Figure {
   public shape: 'rectangle' = 'rectangle';
@@ -50,12 +38,6 @@ export class Triangle implements Figure {
     public b: number = 0,
     public c: number = 0,
   ) {
-    // this.color = color;
-    // this.shape = shape;
-    // this.a = a;
-    // this.b = b;
-    // this.c = c;
-
     if (this.a <= 0 || this.b <= 0 || this.c <= 0) {
       throw new Error('your error message');
     }
@@ -95,11 +77,9 @@ export class Circle implements Figure {
   getArea(): number {
     const area = Math.PI * this.radius * this.radius;
 
-    return Math.floor(area * 100) / 100;
+    return parseFloat(area.toFixed(2));
   }
 }
-
-// ------ X
 
 export function getInfo(figure: Figure): string {
   return `A ${figure.color} ${figure.shape} - ${figure.getArea()}`;
